@@ -5,22 +5,19 @@
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
+      "root": "demo/src",
+      "outDir": "demo/dist",
       "assets": [
         "assets",
         "favicon.ico"
       ],
       "index": "index.html",
       "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "test": "../../scripts/test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "",
+      "mobile": false,
       "styles": [
-        "../node_modules/foundation-sites/dist/css/foundation.min.css",
-        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -30,29 +27,32 @@
       }
     }
   ],
+  "addons": [],
+  "packages": [],
   "e2e": {
     "protractor": {
-      "config": "./protractor.conf.js"
+      "config": "protractor.conf.js"
     }
   },
-  "lint": [
-    {
-      "project": "src/tsconfig.app.json"
-    },
-    {
-      "project": "src/tsconfig.spec.json"
-    },
-    {
-      "project": "e2e/tsconfig.e2e.json"
-    }
-  ],
   "test": {
     "karma": {
-      "config": "./karma.conf.js"
+      "config": "karma.conf.js"
     }
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
   }
 }
