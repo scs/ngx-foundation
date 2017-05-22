@@ -29,6 +29,15 @@
   ],
   "addons": [],
   "packages": [],
+  "module": [
+    {
+      "name": "ngx-foundation",
+      "root": "src",
+      "outDir": "dist",
+      "main":"index.ts",
+      "tsconfig": "tsconfig.json"
+    }
+  ],
   "e2e": {
     "protractor": {
       "config": "protractor.conf.js"

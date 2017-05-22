@@ -17,15 +17,12 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "lib": ["dom", "es6"],
-    "types": [
-      "jasmine"
-    ]
+    "types": []
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "../scripts/typings.d.ts",
     "./index.ts"
   ],
   "angularCompilerOptions": {
