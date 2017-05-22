@@ -1,0 +1,24 @@
+<h1>
+  {{title}}
+</h1>
+
+<button class="button" (click)="modalDialog.show()">open simple dialog</button>
+<br />
+<button class="button" (click)="modalComp.show()">open component dialog</button>
+<br />
+<div>canceled: {{dialogResult?.canceled}}, name: {{dialogResult?.name}}, age: {{dialogResult?.age}}</div>
+
+<div zfReveal #modalDialog="zf-reveal" [config]="{closeOnClick: false, overlay: false}">
+  <div>this is the dialogs content!</div>
+  <button class="close-button" (click)="modalDialog.hide()">&times;</button>
+</div>
+
+<div zfReveal #modalComp="zf-reveal"
+  (shown)="modalCompShown()"
+  (hidden)="modalCompHidden($event)">
+  <comp-dialog
+    [name]="dialogResult?.name"
+    [age]="dialogResult?.age"
+    (done)="modalComp.hide($event)">
+  </comp-dialog>
+</div>
