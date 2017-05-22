@@ -1,12 +1,12 @@
 import { Component, ElementRef, Renderer } from '@angular/core';
 
-import { ClassName } from './modal-options.class';
-import { ModalDirective } from './modal.component';
+import { ClassName } from './reveal-options.class';
+import { RevealDirective } from './reveal.component';
 
-export class ModalBackdropOptions {
+export class RevealBackdropOptions {
   public animate:boolean = true;
 
-  public constructor(options:ModalBackdropOptions) {
+  public constructor(options:RevealBackdropOptions) {
     Object.assign(this, options);
   }
 }
@@ -18,7 +18,7 @@ export class ModalBackdropOptions {
   // tslint:disable-next-line
   host: {'class': ClassName.BACKDROP}
 })
-export class ModalBackdropComponent {
+export class RevealBackdropComponent {
   // public get isAnimated():boolean {
   //   return this._isAnimated;
   // }
@@ -42,9 +42,9 @@ export class ModalBackdropComponent {
 
   // protected _isAnimated:boolean;
   protected _isShown:boolean = false;
-  private _modal: ModalDirective;
+  private _modal: RevealDirective;
 
-  public set modal(m : ModalDirective) {
+  public set modal(m : RevealDirective) {
     this._modal = m;
   }
 

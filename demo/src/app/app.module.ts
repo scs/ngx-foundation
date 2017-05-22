@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { ModalModule} from '../components/modal';
+import { RevealModule} from 'ngx-foundation/reveal';
 
 import { AppComponent } from './app.component';
 import { ComponentDialog } from './dialog.component';
@@ -17,7 +17,7 @@ import { ComponentDialog } from './dialog.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ModalModule.forRoot()
+    RevealModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

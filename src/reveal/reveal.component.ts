@@ -14,8 +14,8 @@ import {
 import { document } from '../utils/facade/browser';
 
 import { Utils } from '../utils/utils.class';
-import { ModalBackdropComponent } from './modal-backdrop.component';
-import { ClassName, modalConfigDefaults, ModalOptions, Selector } from './modal-options.class';
+import { RevealBackdropComponent } from './reveal-backdrop.component';
+import { ClassName, modalConfigDefaults, RevealOptions, Selector } from './reveal-options.class';
 
 import { window } from '../utils/facade/browser';
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -28,18 +28,18 @@ const BACKDROP_TRANSITION_DURATION = 150;
   selector: '[zfReveal]',
   exportAs: 'zf-reveal'
 })
-export class ModalDirective implements AfterViewInit, OnDestroy {
+export class RevealDirective implements AfterViewInit, OnDestroy {
 
   @Input()
-  public set config(conf: ModalOptions) {
+  public set config(conf: RevealOptions) {
     this._config = this.getConfig(conf);
   }
 
-  public get config(): ModalOptions {
+  public get config(): RevealOptions {
     return this._config;
   }
 
-  @Output() public shown = new EventEmitter<ModalDirective>();
+  @Output() public shown = new EventEmitter<RevealDirective>();
   @Output() public hidden = new EventEmitter<any>();
 
   //   public isAnimated: boolean = true;
@@ -49,11 +49,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   private _element: ElementRef;
   private _renderer: Renderer;
-  private _config: ModalOptions;
+  private _config: RevealOptions;
   private _isShown = false;
 
-  private backdrop: ComponentRef<ModalBackdropComponent>;
-  private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
+  private backdrop: ComponentRef<RevealBackdropComponent>;
+  private _backdropLoader: ComponentLoader<RevealBackdropComponent>;
 
   @HostListener('keydown.esc')
   public onEsc(): void {
@@ -63,7 +63,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   constructor(_element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer, clf: ComponentLoaderFactory) {
     this._element = _element;
     this._renderer = _renderer;
-    this._backdropLoader = clf.createLoader<ModalBackdropComponent>(_element, _viewContainerRef, _renderer);
+    this._backdropLoader = clf.createLoader<RevealBackdropComponent>(_element, _viewContainerRef, _renderer);
   }
 
   public ngAfterViewInit() {
@@ -182,7 +182,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   //   document.body.style.paddingRight = this.originalBodyPadding;
   // }
 
-  protected getConfig(config?: ModalOptions): ModalOptions {
+  protected getConfig(config?: RevealOptions): RevealOptions {
     return Object.assign({}, modalConfigDefaults, config);
   }
 
@@ -190,7 +190,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     if (this._isShown && this.config.overlay && (!this.backdrop || !this.backdrop.instance.isShown)) {
       this.removeBackdrop();
       this._backdropLoader
-        .attach(ModalBackdropComponent)
+        .attach(RevealBackdropComponent)
         .to('body')
         .show();
       this.backdrop = this._backdropLoader._componentRef;

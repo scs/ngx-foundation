@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentDialogResult } from './dialog.component';
-import { ModalDirective } from '../components/modal';
+import { ModalDirective } from 'ngx-foundation/reveal';
 
 @Component({
   selector: 'app-root',

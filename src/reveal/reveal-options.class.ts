@@ -1,4 +1,4 @@
-export interface ModalOptions {
+export interface RevealOptions {
   /** 
    * Motion-UI class to use for animated elements. If none used, defaults to simple show/hide.
    */
@@ -65,7 +65,7 @@ export interface ModalOptions {
   additionalOverlayClasses: string;
 }
 
-export const modalConfigDefaults: ModalOptions = {
+export const modalConfigDefaults: RevealOptions = {
   /* Motion-UI class to use for animated elements. If none used, defaults to simple show/hide.
    * @option
    * @type {string}
@@ -189,7 +189,7 @@ export const ClassName:any = {
 };
 
 export const Selector:any = {
-  DIALOG: '.modal-dialog',
+  DIALOG: '.reveal-dialog',
   DATA_TOGGLE: '[data-toggle="modal"]',
   DATA_DISMISS: '[data-dismiss="modal"]',
   FIXED_CONTENT: '.navbar-fixed-top, .navbar-fixed-bottom, .is-fixed'
