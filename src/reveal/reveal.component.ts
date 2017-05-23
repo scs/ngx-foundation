@@ -57,7 +57,9 @@ export class RevealDirective implements AfterViewInit, OnDestroy {
 
   @HostListener('keydown.esc')
   public onEsc(): void {
+    if (this.config.closeOnEsc) {
       this.hide();
+    }
   }
 
   constructor(_element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer, clf: ComponentLoaderFactory) {
@@ -113,9 +115,13 @@ export class RevealDirective implements AfterViewInit, OnDestroy {
 
     this.updatePosition();
 
+    let focusableChild = this.findFocusable(this._element.nativeElement as NodeSelector);
+
     const transitionComplete = () => {
       //   if (this._config.focus) {
-          this._element.nativeElement.focus();
+        if (focusableChild) {
+          focusableChild.focus();
+        }
       //   }
       this.shown.emit(this);
     };
@@ -125,6 +131,19 @@ export class RevealDirective implements AfterViewInit, OnDestroy {
     // } else {
     transitionComplete();
     // }
+  }
+
+  private findFocusable(element?: NodeSelector): any {
+    if (!element) {
+      return null;
+    }
+
+    let focusable = element.querySelector('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+    
+    // foundation reveal: selects only visible elements, we omit this for now...
+    // if (!$(this).is(':visible') || $(this).attr('tabindex') < 0) { return false; } //only have visible elements and those that have a tabindex greater or equal 0
+
+    return focusable;
   }
 
   private updatePosition() {
@@ -191,7 +210,7 @@ export class RevealDirective implements AfterViewInit, OnDestroy {
       this.removeBackdrop();
       this._backdropLoader
         .attach(RevealBackdropComponent)
-        .to('body')
+        .to(this._element.nativeElement.parentElement) //'body')
         .show();
       this.backdrop = this._backdropLoader._componentRef;
       this._renderer.setElementStyle(this.backdrop.instance.element.nativeElement, 'display', 'block');

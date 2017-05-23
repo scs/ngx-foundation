@@ -95,7 +95,7 @@ export class ComponentLoader<T> {
   }
 
   // todo: add behaviour: to target element, `body`, custom element
-  public to(container?: string): ComponentLoader<T> {
+  public to(container?: string | any): ComponentLoader<T> {
     this.container = container || this.container;
     return this;
   }
@@ -127,6 +127,8 @@ export class ComponentLoader<T> {
       if (this.container === 'body' && typeof document !== 'undefined') {
         document.querySelector(this.container as string)
           .appendChild(this._componentRef.location.nativeElement);
+      } else if (this.container.appendChild) {
+        this.container.appendChild(this._componentRef.location.nativeElement);
       }
 
       // we need to manually invoke change detection since events registered
