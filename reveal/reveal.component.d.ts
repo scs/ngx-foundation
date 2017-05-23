@@ -17,6 +17,7 @@ export declare class RevealDirective implements AfterViewInit, OnDestroy {
     ngOnDestroy(): void;
     show(): void;
     protected showElement(): void;
+    private findFocusable(element?);
     private updatePosition();
     hide(event?: Event): void;
     protected hideModal(event?: Event): void;

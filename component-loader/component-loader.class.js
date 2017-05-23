@@ -74,6 +74,9 @@ var ComponentLoader = (function () {
                 document.querySelector(this.container)
                     .appendChild(this._componentRef.location.nativeElement);
             }
+            else if (this.container.appendChild) {
+                this.container.appendChild(this._componentRef.location.nativeElement);
+            }
             // we need to manually invoke change detection since events registered
             // via
             // Renderer::listen() are not picked up by change detection with the

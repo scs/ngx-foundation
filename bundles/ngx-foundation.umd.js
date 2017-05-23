@@ -291,6 +291,9 @@ var ComponentLoader = (function () {
                 document.querySelector(this.container)
                     .appendChild(this._componentRef.location.nativeElement);
             }
+            else if (this.container.appendChild) {
+                this.container.appendChild(this._componentRef.location.nativeElement);
+            }
             // we need to manually invoke change detection since events registered
             // via
             // Renderer::listen() are not picked up by change detection with the
@@ -799,7 +802,9 @@ var RevealDirective = (function () {
         configurable: true
     });
     RevealDirective.prototype.onEsc = function () {
-        this.hide();
+        if (this.config.closeOnEsc) {
+            this.hide();
+        }
     };
     RevealDirective.prototype.ngAfterViewInit = function () {
         this._config = this._config || this.getConfig();
@@ -838,9 +843,12 @@ var RevealDirective = (function () {
         // }
         this._renderer.setElementClass(this._element.nativeElement, __WEBPACK_IMPORTED_MODULE_3__reveal_options_class__["a" /* ClassName */].IN, true);
         this.updatePosition();
+        var focusableChild = this.findFocusable(this._element.nativeElement);
         var transitionComplete = function () {
             //   if (this._config.focus) {
-            _this._element.nativeElement.focus();
+            if (focusableChild) {
+                focusableChild.focus();
+            }
             //   }
             _this.shown.emit(_this);
         };
@@ -849,6 +857,15 @@ var RevealDirective = (function () {
         // } else {
         transitionComplete();
         // }
+    };
+    RevealDirective.prototype.findFocusable = function (element) {
+        if (!element) {
+            return null;
+        }
+        var focusable = element.querySelector('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+        // foundation reveal: selects only visible elements, we omit this for now...
+        // if (!$(this).is(':visible') || $(this).attr('tabindex') < 0) { return false; } //only have visible elements and those that have a tabindex greater or equal 0
+        return focusable;
     };
     RevealDirective.prototype.updatePosition = function () {
         var width = this._element.nativeElement.clientWidth;
@@ -906,7 +923,7 @@ var RevealDirective = (function () {
             this.removeBackdrop();
             this._backdropLoader
                 .attach(__WEBPACK_IMPORTED_MODULE_2__reveal_backdrop_component__["a" /* RevealBackdropComponent */])
-                .to('body')
+                .to(this._element.nativeElement.parentElement) //'body')
                 .show();
             this.backdrop = this._backdropLoader._componentRef;
             this._renderer.setElementStyle(this.backdrop.instance.element.nativeElement, 'display', 'block');

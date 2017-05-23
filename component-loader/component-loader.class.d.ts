@@ -42,7 +42,7 @@ export declare class ComponentLoader<T> {
      */
     private triggers;
     attach(compType: Type<T>): ComponentLoader<T>;
-    to(container?: string): ComponentLoader<T>;
+    to(container?: string | any): ComponentLoader<T>;
     position(opts?: PositioningOptions): ComponentLoader<T>;
     provide(provider: Provider): ComponentLoader<T>;
     show(opts?: {
