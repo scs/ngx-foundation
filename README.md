@@ -1,5 +1,7 @@
 # ngx foundation
 
+__ At the moment this repository is in an early development stage and only used for internal purposes. It it not yet ready for production.__
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
 
 ## Development server
