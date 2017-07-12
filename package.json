@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Native Angular Foundation Components",
   "license": "MIT",
   "name": "ngx-foundation",
@@ -9,7 +9,7 @@
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0"
   },
-  "_id": "ngx-foundation@0.1.0",
+  "_id": "ngx-foundation@0.2.0",
   "devDependencies": {},
   "dependencies": {}
 }
