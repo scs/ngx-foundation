@@ -835,9 +835,9 @@ var RevealDirective = (function () {
                 __WEBPACK_IMPORTED_MODULE_1__utils_facade_browser__["a" /* document */].body.appendChild(this._element.nativeElement);
             }
         }
+        this._renderer.setElementClass(this._element.nativeElement, __WEBPACK_IMPORTED_MODULE_3__reveal_options_class__["a" /* ClassName */].SHOW, true);
         this._renderer.setElementStyle(this._element.nativeElement, 'position', 'fixed');
         this._renderer.setElementStyle(this._element.nativeElement, 'display', 'block');
-        // this._renderer.setElementProperty(this._element.nativeElement, 'scrollTop', 0);
         // if (this.isAnimated) {
         //   Utils.reflow(this._element.nativeElement);
         // }
@@ -896,7 +896,7 @@ var RevealDirective = (function () {
     };
     RevealDirective.prototype.hideModal = function (event) {
         var _this = this;
-        // this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'true');
+        this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'true');
         this._renderer.setElementStyle(this._element.nativeElement, 'display', 'none');
         this.showBackdrop(function () {
             if (__WEBPACK_IMPORTED_MODULE_1__utils_facade_browser__["a" /* document */] && __WEBPACK_IMPORTED_MODULE_1__utils_facade_browser__["a" /* document */].body) {
